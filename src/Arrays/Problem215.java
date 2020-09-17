@@ -1,5 +1,6 @@
 package Arrays;
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class Problem215 {
     /*
@@ -56,6 +57,36 @@ public class Problem215 {
             }
         }
 
+    }
+    public int findKthLargest1(int[] nums,int k){
+        int len=nums.length;
+        //新建一个长度为len的优先队列，其中第二个参数lamada表达式决定了这是一个优先队列
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(len,(a, b) -> b-a);
+        //思路，既然是找第k的元素，那么我把前k-1大个元素全部poll，然后剩下的堆顶不就是第k大的元素了吗
+        for (int i = 0; i < len; i++) {
+            maxHeap.add(nums[i]);
+        }
+        for (int i=0;i<k-1;i++){
+            maxHeap.poll();
+        }
+        return maxHeap.peek();
+    }
+    //上面的代码用了len个空间，这里还可以优化一下。
+    //思路，最小堆把前len-k+1个小的元素排出，那堆顶就是第k大（第len-k小）的元素
+    // 我先把前k个元素放到最小堆里（这样可以保证不会把第k大的元素给poll走），从第k+1个开始，入堆时，让堆去自动维护，再把堆顶给排除
+    //使用这种思路的话不能使用大顶堆，只能使用小顶堆，因为大顶堆在出堆时无法保证出去的不是目标数据
+    public int findKthLargest3(int[] nums, int k) {
+        int len = nums.length;
+        // 最小堆
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(k + 1, (a, b) -> (a - b));
+        for (int i = 0; i < k; i++) {
+            priorityQueue.add(nums[i]);
+        }
+        for (int i = k; i < len; i++) {
+            priorityQueue.add(nums[i]);
+            priorityQueue.poll();
+        }
+        return priorityQueue.peek();
     }
 
 }

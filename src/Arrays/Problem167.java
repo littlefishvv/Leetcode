@@ -1,6 +1,7 @@
 package Arrays;
 
 public class Problem167 {
+    //从一个已经排好序的数组中找到和两个下标，其对应数值之和为target
     public int[] twoSum(int[] numbers, int target) {
         //使用对撞指针
         int l=0;
