@@ -24,8 +24,10 @@ public class Problem80 {
             //一直在动，我们可以动态的更新nums[index]而不用管i是多少
             //而且，所有的题目都是在更新index（j）而不是更新i
             if(nums[i]!=nums[index-2]){
-                index++;
+                //相当于重新构造这个数组，i就是不断往后读寻找可以加入的新元素，index就是元素加入的位置，判断如果nums[i]不和index前2个元素重复，这样就
+                //构不成三个连续的串，那么，我们就把这个i对应的元素加到index这个位置。然后让index指向下一个位置  刚好这就是长度，
                 nums[index]=nums[i];
+                index++;
             }
         }
         return index;

@@ -24,6 +24,7 @@ public class Problem283 {
         int n=nums.length;
         if(n<=1) return;
         int j=0;
+        //这涉及到快速排序的思想[0,j）放非0元素，遍历i，当遇到非0的i就放到j那个位置  但是为什么要交换呢，（交换时为了应对所有情况）直接赋值0会出bug
         for(int i=0;i<n;i++){
             if(nums[i]!=0){
                 int tmp = nums[i];

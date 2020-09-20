@@ -80,7 +80,7 @@ public class Problem3 {
                 set.add(s.charAt(r));
                 //否则说明右边界无法拓展，这个时候要缩小窗口 缩小窗口的操作为让l所在下标数组元素--,然后l++
             }else{
-                //把左边界元素移出set，左边界+1
+                //把左边界元素移出set，左边界+1，然后继续右循环，这时候就可以把右边的元素放到set里去了
                 set.remove(s.charAt(l));
                 l++;
             }

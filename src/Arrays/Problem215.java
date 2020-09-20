@@ -25,7 +25,7 @@ public class Problem215 {
 */
     public int partition(int[] nums,int left,int right){
         //以最右边的为基准值，维持一个循环不变量,在[1,j]区间小于等于基准值，在[j+1,i]区间大于基准值
-        int x=nums[right],j=left+1;
+        int x=nums[right],j=left;
         for(int i=1;i<right;i++){
             if(nums[i]<=x){
               j++;

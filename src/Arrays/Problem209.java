@@ -21,7 +21,8 @@ import java.util.Arrays;
  * @version: $
  */
 public class Problem209 {
-    //暴力法，三重循环，时间复杂度很高 o(n^3) 但是可以用二维数组采用动态规划方法，来容纳i-j的和，然后再通过遍历动态规划数组找到最小长度
+    //暴力法，三重循环，时间复杂度很高 o(n^3) 但是可以用二维数组采用动态规划方法，来容纳i-j的和，
+    // 比如dp[i][j] 其中dp[0][j]=dp[0][j-1]+nums[j],然后dp[i][j]=dp[0][j]-dp[0][i]然后再通过遍历动态规划数组找到最小长度
     //下面是滑动窗口解法，时间复杂度为o(n)  滑动窗口也可以用队列模拟
     public int minSubArrayLen(int s,int[] nums){
         //这里也用到了循环不变量 nums[l,r]为我们的滑动窗口  所以r设为了-1
@@ -35,6 +36,9 @@ public class Problem209 {
                 //先进行r++操作 因为当前sum不能满足条件
                 r++;
                 sum+=nums[r];
+
+                //这个else会等到更新完res才会执行。
+                //满足条件后寻找下一个区间。
             }else{
                 sum-=nums[l];
                 l++;
