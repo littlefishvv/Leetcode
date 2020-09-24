@@ -73,6 +73,7 @@ public class Problem3 {
         Set<Character > set=new HashSet<>();
         int l=0,r=-1;
         int res=0;
+
         while(l<s.length()){
             //这个r++是由技巧的，正常情况下，r都应该++，因为r不加，后面就无法进行下去了
             if(r+1<s.length()&&!set.contains(s.charAt(r+1))&&r<s.length()-1){
