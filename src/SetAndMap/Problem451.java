@@ -1,5 +1,7 @@
 package SetAndMap;
 
+import java.util.*;
+
 /**
  * @author ：Siyuan Gao
  * @date ：Created in 2020/9/23 17:47
@@ -38,4 +40,36 @@ package SetAndMap;
  * @version: $
  */
 public class Problem451 {
+    public String frequencySort(String s){
+        char[] chars=s.toCharArray();
+        Map<Character,Integer> map=new HashMap<>();
+        for (int i = 0; i < chars.length; i++) {
+            if (map.containsKey(chars[i])){
+                map.put(chars[i],map.get(chars[i])+1);
+
+            }else{
+                map.put(chars[i],1);
+            }
+        }
+        //对hashmap进行排序  降序排序   1先把map放到list中去，   2对list进行排序  3取出list，然后拼接成字符串
+        List<Map.Entry<Character,Integer>> list = new LinkedList<Map.Entry<Character,Integer>>(map.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<Character, Integer>>() {
+            @Override
+            public int compare(Map.Entry<Character, Integer> o1, Map.Entry<Character, Integer> o2) {
+                return o2.getValue()-o1.getValue();
+            }
+        });
+        StringBuffer stringBuffer=new StringBuffer("");
+        for (Map.Entry<Character,Integer> aa:list){
+            for (Integer integer = 0; integer < aa.getValue(); integer++) {
+                stringBuffer.append(aa.getKey());
+            }
+        }
+
+
+        return String.valueOf(stringBuffer);
+    }
+
+
 }
+
