@@ -1,8 +1,6 @@
 package SetAndMap;
 
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /*给定两个数组，编写一个函数来计算它们的交集。
@@ -28,9 +26,8 @@ import java.util.Set;
 链接：https://leetcode-cn.com/problems/intersection-of-two-arrays
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。*/
 public class Problem349 {
-    //时间复杂度o（nlgn）
+    //用一个set容纳nums1,因为答案表明结果中的每一个元素是唯一的，那么用另一个set容纳结果，然后把结果转为数组
     public int[] intersection(int[] nums1, int[] nums2) {
-
         Set<Integer> set=new HashSet<>();
         for (int i = 0; i < nums1.length; i++) {
             set.add(nums1[i]);
@@ -41,23 +38,6 @@ public class Problem349 {
                 res.add(nums2[i]);
             }
         }
-        /*如何把set转为int数组？
-        * 方法1：先转为integer数组再遍历给int数组赋值
-        * Integer[] temp=res.toArray(new Integer[]{});
-        int[] r=new int[temp.length];
-        for (int i = 0; i < temp.length; i++) {
-            r[i]=temp[i];
-        }
-
-        方法2. 通过迭代器iterator
-          Iterator iterator = set.iterator();
-        int k = 0;
-        while (iterator.hasNext()) {
-            res[k] = (int) iterator.next();
-            k++;
-        }
-        *
-        * */
         Integer[] temp=res.toArray(new Integer[]{});
         int[] r=new int[temp.length];
         for (int i = 0; i < temp.length; i++) {
@@ -65,5 +45,4 @@ public class Problem349 {
         }
         return r;
     }
-
 }
