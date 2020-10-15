@@ -22,9 +22,11 @@ public class Problem18 {
             return lists;
         int a, b, c, d;
         for (a = 0; a <= nums.length - 4; a++) {
+            //去重
             if (a > 0 && nums[a] == nums[a - 1])
                 continue;
             for (b = a + 1; b <= nums.length - 3; b++) {
+                //去重
                 if (b > a + 1 && nums[b] == nums[b - 1])
                     continue;
                 c = b + 1;

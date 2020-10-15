@@ -23,4 +23,24 @@ nums2 = [2,5,6],       n = 3
 链接：https://leetcode-cn.com/problems/merge-sorted-array
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。*/
     //TODO 还没有解题
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        //双指针解法 从数组1中的m+n-1这个下标位置开始，从大到小逐个填
+        int k=m+n-1;
+        int i=m-1;
+        int j=n-1;
+        while(i>=0&&j>=0){
+            if (nums1[i]<nums2[j]){
+                nums1[k]=nums2[j];
+                k--;
+                j--;
+            }else{
+                nums1[k]=nums1[i];
+                k--;
+                i--;
+            }
+            //因为是nums1比较长，如果最后j还没比完，就把j再依次放到nums1中去。
+            while(j>=0) nums1[k--]=nums2[j--];
+        }
+
+    }
 }
