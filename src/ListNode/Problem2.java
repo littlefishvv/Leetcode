@@ -23,6 +23,7 @@ package ListNode;
  * @version: $
  */
 public class Problem2 {
+    //按照题目描述，其实就相当于我们正常的相加。
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode dummyHead=new ListNode(0);
         ListNode p=dummyHead;
@@ -53,6 +54,7 @@ public class Problem2 {
 
 
         }
+        //如果最后还有进位，就单独把这个进位加上，
         if (t!=0) p.next=new ListNode(t);
 
         return dummyHead.next;

@@ -52,13 +52,14 @@ public class Problem83 {
     public ListNode deleteDuplicates1(ListNode head) {
         //终止条件
         if(head==null||head.next==null) return head;
-        //deleteDuplicates1(head.next)这已经是满足无重复条件的链表了
-        head.next=deleteDuplicates1(head.next);
+
+
         //看似是对前两个节点的操作，实际上是做所有节点的操作
         if (head.next.val==head.val){
-            head=head.next;
+            return deleteDuplicates1(head.next);
+        }else{
+            head.next=deleteDuplicates1(head.next);
+            return head;
         }
-
-        return head;
     }
 }
