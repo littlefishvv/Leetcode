@@ -82,6 +82,58 @@ public class Problem143 {
     * }
     * */
 
+    public void reorderList1(ListNode head) {
+        if (head==null||head.next==null) return;
+        ListNode p=head;
+        ListNode q=head;
+        //这行代码很神奇，改动了就会出现空指针异常，一个对应奇数，一个对应偶数。都是对q进行判断。
+        while(q.next!=null&&q.next.next!=null){
+            p=p.next;
+            q=q.next.next;
+        }
+        //后半段的头节点
+        ListNode last=p.next;
+        p.next=null;
+
+
+        //反转后半段链表 prev
+        ListNode prev=null;
+        while(last!=null){
+            ListNode temp=last.next;
+            last.next=prev;
+            prev=last;
+            last=temp;
+
+        }
+
+        ListNode cur1=new ListNode(0);
+        ListNode cur=cur1;
+        ListNode head1=head;
+        //拼接两端链表
+        while(prev!=null&&head1!=null){
+            //每次都要更新cur head1 prev
+            cur.next=head1;
+            cur=cur.next;
+            head1=head1.next;
+
+
+            cur.next=prev;
+            prev=prev.next;
+            cur=cur.next;
+        }
+
+        //拼接剩余的
+        if(prev!=null){
+            cur.next=prev;
+        }
+        if(head1!=null){
+            cur.next=head1;
+        }
+
+
+
+    }
+
 
 
 

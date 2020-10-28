@@ -47,9 +47,11 @@ public class ExchangeSort {
 
     //交换排序2之快速排序
     public static void quickSort(int[] arr,int left,int right){
-        //一定要加这个判断
+        //一定要加这个判断 否则跳不出循环
         if (left<right){
+            //一次partion的过程不仅排序了一次，也返回了基准值所在的位置
             int mid=partition(arr,left,right);
+            //注意，这是递归的是quicksort，而不是partition。
             quickSort(arr,left,mid-1);
             quickSort(arr,mid+1,right);
         }
@@ -77,7 +79,7 @@ public class ExchangeSort {
         arr[j]=pivot;
 */
        //这样写会简单一些
-        while(left<right){
+       /* while(left<right){
             while(left<right&&arr[right]>=pivot){
                 right--;
             }
@@ -88,7 +90,15 @@ public class ExchangeSort {
             arr[right]=arr[left];
 
         }
-        arr[left]=pivot;
+        arr[left]=pivot;*/
+       while(left<right){
+           while(left<right&&arr[right]>=pivot) right--;
+           arr[left]=arr[right];
+           while(left<right&&arr[left]<=pivot) left++;
+           arr[right]=arr[left];
+
+       }
+       arr[left]=pivot;
         return left;
 
     }

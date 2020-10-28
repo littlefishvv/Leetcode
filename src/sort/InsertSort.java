@@ -1,5 +1,7 @@
 package sort;
 
+import java.util.Arrays;
+
 /**
  * @author ：Siyuan Gao
  * @date ：Created in 2020/10/27 14:23
@@ -62,6 +64,7 @@ public class InsertSort {
                 int mid=(high+low)/2;
                 //同样，只有大于的时候才继续往前找
                 if (arr[mid]>temp) high=mid-1;
+                //否则说明要插入的位置在后面那一段
                 else low=mid+1;
             }
 
@@ -93,11 +96,40 @@ public class InsertSort {
                     arr[j]=arr[j-gap];
                     j=j-gap;
                 }
-                //最后让要插入的那个元素放到最后更新完完毕后的j的位置。
+                //最后让要插入的那个元素放到最后更新完完毕后的j的位置。也就是判断出arr[j-gap]是小于等于cur，那么就不更新j也不移动元素了，j就是cur要方的位置
                 arr[j]=cur;
             }
         }
         return arr;
+
+    }
+    //手写一遍希尔排序
+    public static int[] shellSort1(int[] arr){
+        if(arr==null||arr.length<=1) return arr;
+        int n=arr.length;
+        for (int gap=n/2;gap>0;gap=gap/2){
+            for (int i=gap;i<n;i++){
+                int j=i;
+                int cur=arr[i];
+                while(j-gap>=0&&arr[j-gap]>cur){
+                    arr[j]=arr[j-gap];
+                    j=j-gap;
+                }
+                arr[j]=cur;
+            }
+
+        }
+        return arr;
+    }
+    public static void main(String[] args) {
+
+        int arr[]= {65,58,95,10,57,62,13,106,78,23,85};
+
+        System.out.println("排序前："+ Arrays.toString(arr));
+
+        binarySort(arr);
+
+        System.out.println("排序后："+Arrays.toString(arr));
 
     }
 
