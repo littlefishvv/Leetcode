@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * @author ：Siyuan Gao
  * @date ：Created in 2020/10/27 16:26
- * @description：
+ * @description：选择排序之堆排序
  * @modified By：
  * @version: $
  */
@@ -22,10 +22,10 @@ public class HeapSort {
 
 
     * */
-    public static int[] headSort(int[] arr){
+    public static int[] heapSort1(int[] arr){
         int n=arr.length;
         //首先要先构建大顶堆
-        //从第一个非叶子节点开始，从下至上，从右至左调整结构（因为叶子节点没有孩子，无法进行调整）从下往上让每一个节点都是一个大顶堆。
+        //从第一个非叶子节点开始，（比如1 2 3 4 第一个非叶子节点是2 因为2 有叶子节点4 而3没有）从下至上，从右至左调整结构（因为叶子节点没有孩子，无法进行调整）从下往上让每一个节点都是一个大顶堆。
         for (int i=n/2-1;i>=0;i--){
             downAdjust(arr,i,n-1);
         }
@@ -53,7 +53,7 @@ public class HeapSort {
         while(child<=n){
             //如果有右孩子而且比左孩子大，则定位到右孩子
             if (child+1<=n&&arr[child]<arr[child+1]) child++;
-            //如果孩子节点是小于等于父节点的，那不用下沉了
+            //如果孩子节点是小于等于父节点的，那不用下沉了  这里是《=temp而不是《=arr[i]
             if(arr[child]<=temp) break;
 
             //否则，  让子节点上来
@@ -72,9 +72,69 @@ public class HeapSort {
 
         System.out.println("排序前："+ Arrays.toString(arr));
 
-        headSort(arr);
+        heapSort(arr);
 
         System.out.println("排序后："+Arrays.toString(arr));
 
     }
+
+
+
+    //对一个随机数组构建大顶堆
+
+    public static void heapSort(int[] arr){
+
+         int n=arr.length;
+         //从右向左 从下往上把arr调整为一个大顶堆。
+         for (int i=n/2-1;i>=0;i--){
+             downAdjust2(arr,i,n-1);
+         }
+
+         //把大顶堆的堆顶和未排序的最后一个元素（初始下标为n-1 ）进行交换，然后继续调整为大顶堆，经过n次后，就行成了一个小顶堆。
+         for (int i=n-1;i>=1;i--){
+             int temp=arr[i];
+             arr[i]=arr[0];
+             arr[0]=temp;
+             //对头节点进行下沉操作
+             downAdjust2(arr,0,i-1);
+         }
+    }
+    public static void downAdjust2(int[] arr,int i,int length){
+        int child=i*2+1;
+        int temp=arr[i];
+        while(child<=length){
+            if (child+1<=length&&arr[child+1]>arr[child]) child=child+1;
+            //注意，这里是小于temp，而不是小于arr[i]
+            if (arr[child]<=temp) break;
+            arr[i]=arr[child];
+            i=child;
+            child=2*child+1;
+        }
+        arr[i]=temp;
+    }
+   /* public static void downAdjust(int[] arr,int parent ,int n){
+        //临时保存要下沉的元素
+        int temp=arr[parent];
+        //定位左孩子节点的位置
+        int child=2*parent+1;
+        //开始下沉 孩子节点要在正常范围之内
+        //如果是高层节点，那么，可能在这个循环里可能循着一直调整下去。
+        while(child<=n){
+            //如果有右孩子而且比左孩子大，则定位到右孩子
+            if (child+1<=n&&arr[child]<arr[child+1]) child++;
+            //如果孩子节点是小于等于父节点的，那不用下沉了
+            if(arr[child]<=temp) break;
+
+            //否则，  让子节点上来
+            arr[parent]=arr[child];
+            //更新父子节点的位置  让parent成为刚下方的那个位置。
+            parent=child;
+            child=2*parent+1;
+        }
+        //循环结束，parent位置获得了更新  所谓下沉，也就这一行代码有下沉
+        arr[parent]=temp;
+
+    }*/
+
+
 }

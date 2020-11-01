@@ -59,7 +59,7 @@ public class InsertSort {
             //在寻找插入位置上进行二分查找
             int low=0;
             int high=i-1;
-            //最后一定会找到一个位置，mid=low=high 要插入的位置是high+1
+            //最后一定会找到一个位置，其中high
             while(low<=high){
                 int mid=(high+low)/2;
                 //同样，只有大于的时候才继续往前找
@@ -74,6 +74,53 @@ public class InsertSort {
             }
             arr[high+1]=temp;
         }
+    }
+    public static void binarySort1(int[] arr){
+        if (arr==null||arr.length<=1) return;
+        int len=arr.length;
+        for (int i = 0; i < len; i++) {
+            int temp=arr[i];
+            //在寻找插入位置上进行二分查找
+            int low=0;
+            int high=i-1;
+            //最后一定会找到一个位置，其中high会落在要插入位置的前面一个元素位置上，而low会落在要插入的那个元素位置上
+            while(low<=high){
+                int mid=(high+low)/2;
+                //同样，只有大于的时候才继续往前找
+                if (arr[mid]>temp) high=mid-1;
+                    //否则说明要插入的位置在后面那一段
+                else low=mid+1;
+            }
+
+            //移动
+            for(int j=i;j>low;j--){
+                arr[j]=arr[j-1];
+            }
+            arr[low]=temp;
+        }
+    }
+    public static int[] insertSort1(int[] arr){
+
+        if(arr==null||arr.length<=1) return arr;
+        int n=arr.length;
+        for (int i = 0; i < n; i++) {
+            //这个就是要排序的数
+            int temp=arr[i];
+            //寻找插入位置
+            int k=i;
+            //寻找插入位置，从当前元素的前一个元素开始比较，如果后者大于前者，才继续往后找，这样能保证稳定性
+            //要注意的是，k+1才是要插入位置的下标
+            while(k-1>=0&&arr[k-1]>temp) k--;
+
+            //找到插入下标k+1后，要把k+1后面的所有元素都往后移动一位
+            for(int j=i;j>k;j--){
+                arr[j]=arr[j-1];
+            }
+            //再次明确，k+1才是要插入的位置，直接赋值即可
+            arr[k]=temp;
+        }
+
+        return arr;
     }
 
     //3.希尔排序 对整体进行分组，对每个分组进行插入排序，然后不断缩小分组之间的距离
@@ -121,13 +168,14 @@ public class InsertSort {
         }
         return arr;
     }
+
     public static void main(String[] args) {
 
         int arr[]= {65,58,95,10,57,62,13,106,78,23,85};
 
         System.out.println("排序前："+ Arrays.toString(arr));
 
-        binarySort(arr);
+        insertSort(arr);
 
         System.out.println("排序后："+Arrays.toString(arr));
 

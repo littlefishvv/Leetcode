@@ -60,7 +60,8 @@ public class Problem147 {
         dummyHead.next=head;
 
         while (head!=null&&head.next!=null){
-            //找需要寻找插入位置的节点
+            //找需要寻找插入位置的节点 最后head停在要插入节点得前一个节点上，也就是head.next就是那个未排序得node
+            //head就是插入后节点的
             if (head.val<=head.next.val){
                 head=head.next;
                 //加个continue是为了不执行下面的代码，直接进行下次的循环。
@@ -68,7 +69,7 @@ public class Problem147 {
             }
             //pre指针每次从表头遍历寻找插入位置。每次都要更新pre到最前面的节点
             pre=dummyHead;
-            //寻找插入位置的前节点
+            //寻找插入位置的前节点  最后得到的是 pre.next就是要接上head.next的
             while (pre.next.val<head.next.val) pre=pre.next;
             //head是原要插入节点的前节点  现在把这个节点用cur记录下来以便插入
             ListNode curr=head.next;

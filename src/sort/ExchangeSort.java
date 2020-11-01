@@ -29,8 +29,9 @@ public class ExchangeSort {
     public static int[] bubbleSort(int[] arr){
         if (arr==null||arr.length<=1) return arr;
         int n=arr.length;
-        for (int i = 0; i < n; i++) {
-            //我们只对前n-i-1个元素进行交换，因为每次我们都会把前这些元素的最大元素放到最后去
+        //第一轮循环的i仅仅起一个控制下层循环的作用，并不指向实际的元素。 这里i小于n和小于n-1都可以。
+        for (int i = 0; i < n-1; i++) {
+            //我们只对前n-i-1个元素进行交换，因为每次我们都会把第n-i大的元素放到第n-i-1这个下标上去素放到最后去
             for (int j=0;j<n-i-1;j++){
                 //如果后面的大于前面的，说明需要交换
                 if (arr[j+1]<arr[j]){
@@ -46,6 +47,8 @@ public class ExchangeSort {
 
 
     //交换排序2之快速排序
+
+    //首先要对整体进行一次partition，找出基准值的下标，然后，再对基准值的左右分别进行partition，执行起来就是对左右进行quickSort
     public static void quickSort(int[] arr,int left,int right){
         //一定要加这个判断 否则跳不出循环
         if (left<right){
@@ -108,7 +111,7 @@ public class ExchangeSort {
 
         System.out.println("排序前："+ Arrays.toString(arr));
 
-        quickSort(arr,0,arr.length-1);
+        bubbleSort(arr);
 
         System.out.println("排序后："+Arrays.toString(arr));
 

@@ -1,5 +1,7 @@
 package sort;
 
+import java.util.Arrays;
+
 /**
  * @author ：Siyuan Gao
  * @date ：Created in 2020/10/28 14:40
@@ -63,5 +65,54 @@ public class MergeSort {
         while(left<=right){
             arr[left++]=temp[t++];
         }
+    }
+
+
+    //再写一遍归并排序
+    public static void merge1(int[] arr,int left,int mid,int right,int[] temp){
+        int i=left;
+        int j=mid+1;
+        int t=0;
+        while(i<=mid&&j<=right){
+            if (arr[i]<=arr[j]){
+                temp[t++]=arr[i++];
+            }else{
+                temp[t++]=arr[j++];
+            }
+        }
+        while (i<=mid){
+            temp[t++]=arr[i++];
+
+        }
+        while(j<=right){
+            temp[t++]=arr[j++];
+        }
+        t=0;
+        //这里是把temp赋值到arr的left到right中去。
+        while(left<=right){
+            arr[left++]=temp[t++];
+        }
+    }
+
+    public static void sort1(int[] arr,int left,int right,int[] temp){
+        //注意，这里是if，而不是while，如果是while就成死循环了
+        if (left<right){
+            int mid=(left+right)/2;
+            sort1(arr,left,mid,temp);
+            sort1(arr,mid+1,right,temp);
+            merge1(arr,left,mid,right,temp);
+        }
+    }
+    public static void main(String[] args) {
+
+        int arr[]= {65,58,95,10,57,62,13,106,78,23,85};
+        int[] temp=new int[arr.length];
+
+        System.out.println("排序前："+ Arrays.toString(arr));
+
+        sort1(arr,0,arr.length-1,temp);
+
+        System.out.println("排序后："+Arrays.toString(arr));
+
     }
 }
