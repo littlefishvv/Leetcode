@@ -95,7 +95,7 @@ public class MergeSort {
     }
 
     public static void sort1(int[] arr,int left,int right,int[] temp){
-        //注意，这里是if，而不是while，如果是while就成死循环了
+        //注意，这里是if，而不是while，如果是while就成死循环了 让left小于right是为了当已经分成单个元素时进入下面的治的过程
         if (left<right){
             int mid=(left+right)/2;
             sort1(arr,left,mid,temp);

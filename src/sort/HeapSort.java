@@ -58,7 +58,7 @@ public class HeapSort {
 
             //否则，  让子节点上来
             arr[parent]=arr[child];
-            //更新父子节点的位置  让parent成为刚下方的那个位置。
+            //更新父子节点的下标  让parent成为刚下方的那个位置。
             parent=child;
             child=2*parent+1;
         }

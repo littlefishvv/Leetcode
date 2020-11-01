@@ -1,45 +1,55 @@
-package ListNode;
+package sort;
 
-/**
- * @author ：Siyuan Gao
- * @date ：Created in 2020/10/21 16:34
- * @description：
- * 在o(nlogn)的时间复杂度内对链表进行排序
- * @modified By：
- * @version: $
- */
-public class Problem148 {
-    //插入排序
-    public ListNode sortList(ListNode head) {
+public class NodeMergeSort {
 
-        if(head==null||head.next==null) return head;
-        ListNode dummyNode=new ListNode(0);
-        dummyNode.next=head;
-        ListNode pre=null;
-        while(head!=null&&head.next!=null){
-            while(head.val<=head.next.val) {
-                head=head.next;
-                continue;
-            }
-            pre=dummyNode;
-            while(pre.next.val<head.next.val){
-                pre=pre.next;
-            }
-            //cur就是要插的节点
-            ListNode cur=head.next;
-            head.next=head.next.next;
+    //注意，这样可不算完，这不是链表的归并排序，这只是合并两个有序的链表（特地强调有序）！！！！
+    public static ListNode  nodeMergeSort(ListNode head){
 
-            //进行节点的插入
-            cur.next=pre.next;
-            pre.next=cur;
+
+        if (head==null||head.next==null) return head;
+        ListNode dummyHead=new ListNode(0);
+        dummyHead.next=head;
+        ListNode n=dummyHead;
+
+        ListNode fast=head;
+        ListNode slow=head;
+        ListNode last=null;
+        while(fast.next!=null&&fast.next.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
 
         }
-        return dummyNode.next;
+        last=slow.next;
+        slow.next=null;
+        while(head!=null&&last!=null){
+            if (head.val<=last.val){
+                n.next=head;
+                head=head.next;
+            }
+            else{
+                n.next=last;
+                last=last.next;
+            }
+            n=n.next;
+        }
 
+        if(last!=null){
+            n.next=last;
+            n=n.next;
+        }
+
+        if(head!=null){
+            n.next=head;
+            n=n.next;
+        }
+        return dummyHead.next;
     }
 
-   //下面用归并排序
-    public ListNode sortList1(ListNode head) {
+
+
+    //下面才是真正的归并排序！！！！
+
+    public ListNode sortList(ListNode head) {
         // 1、递归结束条件
         if (head == null || head.next == null) {
             return head;
@@ -49,8 +59,9 @@ public class Problem148 {
         ListNode midNode = middleNode(head);
         ListNode rightHead = midNode.next;
         midNode.next = null;
-
+        //对左边链表进行排序
         ListNode left = sortList(head);
+        //对右边链表进行排序
         ListNode right = sortList(rightHead);
 
         // 3、当前层业务操作（合并有序链表）
@@ -63,9 +74,9 @@ public class Problem148 {
             return head;
         }
         ListNode slow = head;
-        ListNode fast = head.next.next;
+        ListNode fast = head;
 
-        while (fast != null && fast.next != null) {
+        while (fast.next != null && fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }

@@ -47,7 +47,7 @@ public class ExchangeSort {
 
 
     //交换排序2之快速排序
-
+//todo 要掌握多种快速排序的实现方式。
     //首先要对整体进行一次partition，找出基准值的下标，然后，再对基准值的左右分别进行partition，执行起来就是对左右进行quickSort
     public static void quickSort(int[] arr,int left,int right){
         //一定要加这个判断 否则跳不出循环
