@@ -24,7 +24,7 @@ public class NodeInsertSort {
             }
 
             pre=dummyHead;
-
+            //如果是小于等于，就是稳定的，否则就是不稳定的。
             while(pre.next.val<head.next.val) pre=pre.next;
             //先用cur保存要插入的节点
             ListNode cur=head.next;

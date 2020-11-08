@@ -31,15 +31,6 @@ public class ListNode {
         }
         return head;
     }
-    void printList(ListNode head){
-        ListNode curNode=head;
-        StringBuffer s=new StringBuffer();
-        while (curNode!=null){
-            s.append(head.val).append("--->");
 
-            curNode=head.next;
-        }
-        System.out.println(s.toString());
-    }
 
 }
