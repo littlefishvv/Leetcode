@@ -57,7 +57,7 @@ public class NodeMergeSort {
 根据链表特性：
 
 数组额外空间：链表可以通过修改引用来更改节点顺序，无需像数组一样开辟额外空间；
-递归额外空间：递归调用函数将带来O(logn)O(logn)的空间复杂度，因此若希望达到O(1)O(1)空间复杂度，则不能使用递归。
+递归额外空间：递归调用函数将带来O(logn)的空间复杂度，因此若希望达到O(1)O(1)空间复杂度，则不能使用递归。
 * */
     public ListNode sortList(ListNode head) {
         // 1、递归结束条件
@@ -100,7 +100,7 @@ public class NodeMergeSort {
         ListNode curr = sentry;
 
         while(l1 != null && l2 != null) {
-            if(l1.val < l2.val) {
+            if(l1.val <= l2.val) {
                 curr.next = l1;
                 l1 = l1.next;
             } else {
@@ -121,16 +121,17 @@ public class NodeMergeSort {
         int length = getLength(head);
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
-
+        //这个step用来给split获得split未排序链表头节点的指针
         for(int step = 1; step < length; step*=2){ //依次将链表分成1块，2块，4块...
             //每次变换步长，pre指针和cur指针都初始化在链表头
-            ListNode pre = dummy;
+            ListNode pre = dummy;//用pre代表已排好序链表的尾指针
             ListNode cur = dummy.next;
+            //第一次是对两个节点进行的排序，第二次是对四个前面已经排过之后的链表四个进行排序，这就是迭代法。
             while(cur!=null){
                 ListNode h1 = cur; //第一部分头 （第二次循环之后，cur为剩余部分头，不断往后把链表按照步长step分成一块一块...）
-                ListNode h2 = split(h1,step);  //第二部分头  在split中 h1最后指向了null
+                ListNode h2 = split(h1,step);  //获得第二部分头  在split中 h1最后指向了null，那么就把第一部分独立了出来
                 cur = split(h2,step); //剩余部分的头  同时h2在最后指向了空，那么下面就能进行合并操作了
-                ListNode temp = merge(h1,h2); //将一二部分排序合并 同时cur会继续循环下去
+                ListNode temp = merge(h1,h2); //将一二部分排序合并 同时cur会继续循环下去 这个不算递归 因为这是用别的方法而不是调用本身
                 pre.next = temp; //将前面的部分与排序好的部分连接
                 while(pre.next!=null){
                     pre = pre.next; //把pre指针移动到排序好的部分的末尾
@@ -148,8 +149,9 @@ public class NodeMergeSort {
         }
         return count;
     }
+    //断链操作 返回第二部分链表头  参针数head是已排好序链表的尾指
     public ListNode split(ListNode head,int step){
-        //断链操作 返回第二部分链表头
+
         if(head==null)  return null;
         ListNode cur = head;
         for(int i=1; i<step && cur.next!=null; i++){

@@ -13,7 +13,7 @@ import java.util.Stack;
  * @version: $
  */
 public class Problem94 {
-
+   //就是一个持续的左链入栈的过程,
     public List<Integer> inorderTraversal(TreeNode root) {
        List<Integer> list=new ArrayList<>();
        if (root==null) return list;
@@ -35,5 +35,26 @@ public class Problem94 {
        }
        return list;
     }
+
+    //再写一遍中序遍历
+    public List<Integer> inorderTraversal1(TreeNode root) {
+        List<Integer> list=new ArrayList<>();
+        if (root==null) return list;
+        Stack<TreeNode> stack=new Stack<>();
+        while(!stack.isEmpty()||root!=null){
+            if (root!=null){
+                stack.push(root);
+                root=root.left;
+            }else{
+                root=stack.pop();
+                list.add(root.val);
+                root=root.right;
+            }
+        }
+        return list;
+
+    }
+
+
 
 }

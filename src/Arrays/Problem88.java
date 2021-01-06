@@ -22,7 +22,7 @@ nums2 = [2,5,6],       n = 3
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/merge-sorted-array
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。*/
-    //TODO 还没有解题
+    //
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         //双指针解法 从数组1中的m+n-1这个下标位置开始，从大到小逐个填
         int k=m+n-1;

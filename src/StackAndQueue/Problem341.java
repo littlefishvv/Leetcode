@@ -10,5 +10,5 @@ import java.util.Iterator;
  * @version: $
  */
 public class Problem341 {
-
+//见NestedIterator
 }

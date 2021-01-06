@@ -1,6 +1,7 @@
 package sort;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * @author ：Siyuan Gao
@@ -20,13 +21,15 @@ public class MergeSort {
 
     性质：稳定性：稳定；    时间复杂度O(nlogn)
     * */
+    static int count=0;
     public static void sort(int[] arr){
         int[] temp=new int[arr.length];
         sort(arr,0,arr.length-1,temp);
     }
 
     private static void sort(int[] arr,int left,int right,int[] temp){
-        if (left<right){
+        //这里是if而不是while  当left不小于right时，说明是单个数字，不需要进行排序
+     if (left<right){
             int mid=(left+right)/2;
 
             //这是要把他们分成到单个数据，这样单个数据就相当于一个有序数组，
@@ -52,6 +55,7 @@ public class MergeSort {
                 temp[t++]=arr[i++];
             }else{
                 temp[t++]=arr[j++];
+                count+=mid-i+1;
             }
         }
         while (i<=mid){
@@ -78,6 +82,7 @@ public class MergeSort {
                 temp[t++]=arr[i++];
             }else{
                 temp[t++]=arr[j++];
+
             }
         }
         while (i<=mid){
@@ -105,14 +110,36 @@ public class MergeSort {
     }
     public static void main(String[] args) {
 
-        int arr[]= {65,58,95,10,57,62,13,106,78,23,85};
+        /*int arr[]= {65,58,95,10,57,62,13,106,78,23,85};
         int[] temp=new int[arr.length];
 
         System.out.println("排序前："+ Arrays.toString(arr));
 
         sort1(arr,0,arr.length-1,temp);
 
-        System.out.println("排序后："+Arrays.toString(arr));
+        System.out.println("排序后："+Arrays.toString(arr));*/
+        Scanner scan = new Scanner(System.in);
+        //
+        while (scan.hasNext()) {
+            //得到每个数组
+            String[] nums = scan.nextLine().split(" ");
+            int[] arrs = new int[nums.length];
 
+            for (int i = 0; i < nums.length; i++) {
+                arrs[i] = Integer.parseInt(nums[i]);
+            }
+
+            /*int len=nums.length;
+            int count=0;
+            for(int i=1;i<len;i++){
+                for(int j=i;j>=0;j--){
+                    if (Integer.parseInt(nums[j])>Integer.parseInt(nums[i])) count++;
+                }
+            }*/
+            int[] temp = new int[arrs.length];
+            sort(arrs, 0, arrs.length - 1, temp);
+            System.out.println(count);
+
+        }
     }
 }

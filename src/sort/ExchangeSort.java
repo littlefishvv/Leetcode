@@ -46,7 +46,7 @@ public class ExchangeSort {
 
 
 
-    //交换排序2之快速排序
+    //交换排序2之快速排序  稳定性：不稳定
 //todo 要掌握多种快速排序的实现方式。
     //首先要对整体进行一次partition，找出基准值的下标，然后，再对基准值的左右分别进行partition，执行起来就是对左右进行quickSort
     public static void quickSort(int[] arr,int left,int right){
@@ -67,9 +67,9 @@ public class ExchangeSort {
 
        /* //下面的代码一点点都不能动 尤其是=号
         while(true){
-            //向右找到一个小于等于基准值的元素的位置
+            //向右找到一个大于基准值的元素的位置
             while(i<=j&&arr[i]<=pivot) i++;
-            //向左找到第一个大于等于基准值的元素的位置
+            //向左找到第一个小于基准值的元素的位置
             while(i<=j&&arr[j]>=pivot) j--;
             if (i>=j) break;
             //交换两个元素的位置，始得左边的元素不大于pivot，右边的元素不小于pivot
@@ -80,6 +80,7 @@ public class ExchangeSort {
         //最后相遇时的值和基准值就行交换。这里交换回去的值是一定比arr[left]小的 因为第一轮循环只要大的都往左继续找了
         arr[left]=arr[j];
         arr[j]=pivot;
+        return j;
 */
        //这样写会简单一些
        /* while(left<right){
@@ -96,11 +97,14 @@ public class ExchangeSort {
         arr[left]=pivot;*/
        while(left<right){
            while(left<right&&arr[right]>=pivot) right--;
+           //找到右边需要交换的元素的下标，把它放到左边的位置  不必担心基准值会变，因为基准值已经记录下来了。
            arr[left]=arr[right];
+           //找到需要交换的左边的元素的下标，把它交换到右边的位置。
            while(left<right&&arr[left]<=pivot) left++;
            arr[right]=arr[left];
 
        }
+       //跳出循环后left==right，这时让这个值等于基准值。
        arr[left]=pivot;
         return left;
 

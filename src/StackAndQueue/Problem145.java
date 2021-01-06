@@ -1,5 +1,7 @@
 package StackAndQueue;
 
+import sun.reflect.generics.tree.Tree;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -37,5 +39,31 @@ public class Problem145 {
             list.add(s2.pop().val);
         }
         return list;
+    }
+
+    //再写一遍后续遍历
+    public List<Integer> postorderTraversal1(TreeNode root) {
+        List<Integer> list=new ArrayList<Integer>();
+        if(root==null) return list;
+        Stack<TreeNode> s1 = new Stack<TreeNode>();
+        Stack<TreeNode> s2 = new Stack<TreeNode>();
+        //下面这段和先序遍历差不多
+        s1.push(root);
+        while(!s1.isEmpty()){
+            root=s1.pop();
+            s2.push(root);
+            if (root.left!=null){
+                s1.push(root.left);
+            }
+            if (root.right!=null){
+                s1.push(root.right);
+            }
+        }
+        while (!s2.isEmpty()){
+            list.add(s2.pop().val);
+        }
+        return list;
+
+
     }
 }

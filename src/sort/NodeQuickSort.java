@@ -10,7 +10,7 @@ package sort;
 public class NodeQuickSort {
 
 
-    //这个解法是错误的噢 todo
+    //这个解法是错误的噢
     public static  ListNode quickSort(ListNode head,ListNode end){
         if (head==null||head.next==null) return head;
         ListNode head1,head2,end1,end2;

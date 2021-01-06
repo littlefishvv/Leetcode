@@ -59,6 +59,7 @@ public class Problem107 {
                     queue.offer(right);
                 }
             }
+            //linkedlist头插入，避免了反转链表
             levelOrder.add(0, level);
         }
         return levelOrder;

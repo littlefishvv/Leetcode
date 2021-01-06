@@ -40,7 +40,7 @@ public class HeapSort {
         }
         return arr;
     }
-    //todo 找一个固定的时间搞懂堆排序
+
 
     //downAdjust就是对parent节点进行调整，让它放到正确的位置
     public static void downAdjust(int[] arr,int parent ,int n){

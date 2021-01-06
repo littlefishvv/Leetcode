@@ -2,6 +2,7 @@ package ListNode;
 
 import javafx.beans.binding.ListBinding;
 
+
 /**
  * @author ：Siyuan Gao
  * @date ：Created in 2020/10/15 10:54
@@ -22,6 +23,7 @@ public class ListNode {
     }
     //通过数组创建链表
     ListNode createLinkedList(int[] arr,int n){
+
         if (n==0) return null;
         ListNode head=new ListNode(arr[0]);
         ListNode cur=head;
@@ -30,6 +32,10 @@ public class ListNode {
             cur=cur.next;
         }
         return head;
+    }
+
+    public static void main(String[] args) {
+
     }
 
 
