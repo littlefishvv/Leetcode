@@ -1,8 +1,8 @@
-package BinaryTree;
+package Hot100;
 
 /**
  * @author ：Siyuan Gao
- * @date ：Created in 2020/11/29 17:00
+ * @date ：Created in 2021/1/13 19:50
  * @description：
  * 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
  *
@@ -24,12 +24,6 @@ package BinaryTree;
  * 输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
  * 输出: 5
  * 解释: 节点 5 和节点 4 的最近公共祖先是节点 5。因为根据定义最近公共祖先节点可以为节点本身。
- *  
- *
- * 说明:
- *
- * 所有节点的值都是唯一的。
- * p、q 为不同节点且均存在于给定的二叉树中。
  *
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree
@@ -38,20 +32,7 @@ package BinaryTree;
  * @version: $
  */
 public class Problem236 {
-    //经典LCA问题
-
-
-    /*
-     *
-     * 根据以上定义，若 rootroot 是 p, qp,q 的 最近公共祖先 ，则只可能为以下情况之一：
-pp 和 qq 在 rootroot 的子树中，且分列 rootroot 的 异侧（即分别在左、右子树中）；
-p = rootp=root ，且 qq 在 rootroot 的左或右子树中；
-q = rootq=root ，且 pp 在 rootroot 的左或右子树中；
-
-
-     * */
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-
         if(root==null){
             return root;
         }
@@ -74,6 +55,5 @@ q = rootq=root ，且 pp 在 rootroot 的左或右子树中；
         }
 
         return null;
-
     }
 }

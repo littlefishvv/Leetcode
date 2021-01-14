@@ -1,29 +1,30 @@
 package recursionAndHuisu;
 
-import SetAndMap.Problem1;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
  * @author ：Siyuan Gao
- * @date ：Created in 2021/1/6 11:33
+ * @date ：Created in 2021/1/6 11:34
  * @description：
  * @modified By：
  * @version: $
  */
-public class Problem51 {
-    static int count=1;
+public class Problem52 {
+
+    static int count=0;
     List<List<String>> res=new ArrayList<>();
     List<List<Integer>> pos=new ArrayList<>();
-    public List<List<String>> solveNQueens(int n) {
+
+    public  int  totalNQueens(int n) {
         List<String> list=new ArrayList<>();
-        if(n==0) return res;
+        if(n==1) return count;
         backTrack(n,0,pos,list);
-        return res;
+        return count;
 
     }
+
 
     //index代表行号 【index,i】代表新皇后放入的位置  不过indexh
     private void backTrack(int n,int index,List<List<Integer>> pos,List<String> list){
@@ -50,15 +51,12 @@ public class Problem51 {
 
             list.add(getStr(n,i));
             pos.add(new ArrayList<>(Arrays.asList(index,i)));
-            //注意这index只能先加，才能放到参数了，而不是再参数里加一  为什么呢？也许面试官会问呢 因为这个如果再参数里加，当退出那次的回溯后，index就没用了，再减的是没有加的index，就会出现负数
 
-            //当然，这里完全不用这样写，只需要再参数里直接加一就行了，也就是说去点index++和index--，直接在参数里传入index+1
-            index++;
             System.out.println(Arrays.toString(pos.toArray()));
-            //进行回溯  每一次回溯都会在index这一行找到一个合适的位置放入，如果找不到，就退出这次的回溯，就把这个index--
-            backTrack(n,index,pos,list);
+            //进行回溯
+            backTrack(n,index+1,pos,list);
             //撤销选择
-            index--;
+
 
             pos.remove(pos.size()-1);
             list.remove(list.size()-1);
@@ -77,11 +75,6 @@ public class Problem51 {
         }
         return s.toString();
 
-    }
-
-    public static void main(String[] args) {
-        Problem51 p=new Problem51();
-        p.solveNQueens(5);
     }
 
 }
