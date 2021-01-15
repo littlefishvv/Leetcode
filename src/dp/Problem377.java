@@ -70,7 +70,7 @@ public class Problem377 {
         for (int i = 1; i <=target; i++) {
             for (int num:nums){
                 if (num<=i){
-                    //比如dp[4]就是dp[4-3]+dp[4-2]+dp[4-1]的组合加起来，因为从后面这些dp中一定能凑成dp[4];
+                    //比如dp[4]就是dp[4-3]+dp[4-2]+dp[4-1]的组合加起来，因为从后面这些再加上当前的num中一定能凑成dp[4];
                     dp[i]=dp[i]+dp[i-num];
                 }
             }

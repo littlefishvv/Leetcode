@@ -37,7 +37,7 @@ public class Problem474 {
     public int findMaxForm(String[] strs, int m, int n) {
         int len=strs.length;
         if (len<=0) return 0;
-        //int[] dp=new int[len+1];
+        //int[] dp=new int[len+1]; dp[i][j]代表i个0和j个1的最大子集长度
         int[][] dp=new int[m+1][n+1];
 
 
