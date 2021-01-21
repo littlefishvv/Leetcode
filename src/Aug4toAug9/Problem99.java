@@ -23,15 +23,15 @@ public class Problem99 {
     public void inOrder(TreeNode root,List<Integer> nums){
         if(root==null) return ;
         inOrder(root.left,nums);
-        nums.add(root.value);
-        inOrder(root.right,nums);
-    }
-    //从中序遍历的那个列表里找到需要交换的那两个节点 记录其值，放到一个数组中去
-    public int[] findTwoSwapped(List<Integer> nums){
-        int n=nums.size();
-        int x=-1,y=-1;
-        for(int i=0;i<n-1;i++){
-            if (nums.get(i+1)<nums.get(i)){
+            nums.add(root.value);
+            inOrder(root.right,nums);
+        }
+        //从中序遍历的那个列表里找到需要交换的那两个节点 记录其值，放到一个数组中去
+        public int[] findTwoSwapped(List<Integer> nums){
+            int n=nums.size();
+            int x=-1,y=-1;
+            for(int i=0;i<n-1;i++){
+                if (nums.get(i+1)<nums.get(i)){
                 y=nums.get(i+1);
                 if(x==-1){
                     x=nums.get(i);
