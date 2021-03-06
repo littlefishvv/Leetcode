@@ -32,7 +32,7 @@ public class Offer12 {
         board[i][j] = '/';
         boolean res = dfs(board, word, i + 1, j, k + 1) || dfs(board, word, i - 1, j, k + 1) ||
                 dfs(board, word, i, j + 1, k + 1) || dfs(board, word, i , j - 1, k + 1);
-        //这是个复原的过程，为什么要复原呢，我认为是因为有很多选择，毕竟和普通的深度优先不同，这个深度优先是要进行判断的，如果判断出错，需要回去重新深度优先，而重新的过程，需要原来的数据
+        //这是个复原的过程，为什么要复原呢，因为这需要对每一起始点都要进行深度优先，如果一个起始点深度优先后不满足条件，需要把它改过的点再变回来。
         board[i][j] = tmp;
         return res;
     }

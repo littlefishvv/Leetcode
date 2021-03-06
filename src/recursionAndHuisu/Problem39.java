@@ -31,7 +31,7 @@ import java.util.List;
  * [
  *   [2,2,2,2],
  *   [2,3,3],
- *   [3,5]
+ *  *   [3,5]
  * ]
  *  
  *
@@ -92,7 +92,9 @@ public class Problem39 {
 
     public static void main(String[] args) {
         Problem39 p=new Problem39();
-        p.combinationSum(new int[]{2,3,6,7},7);
+
+        System.out.println();
+        //p.combinationSum(new int[]{2,3,6,7},7);
     }
 
 }

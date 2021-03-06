@@ -28,21 +28,21 @@ public class MergeSort {
     }
 
     private static void sort(int[] arr,int left,int right,int[] temp){
-        //这里是if而不是while  当left不小于right时，说明是单个数字，不需要进行排序
-     if (left<right){
-            int mid=(left+right)/2;
+            //这里是if而不是while  当left不小于right时，说明是单个数字，不需要进行排序
+            if (left<right){
+                int mid=(left+right)/2;
 
-            //这是要把他们分成到单个数据，这样单个数据就相当于一个有序数组，
-            //这是分治中的分的过程 但分的过程也会调用治的过程。
-            //左边归并排序，使得左子序列有序
-            sort(arr,left,mid,temp);
-            ///右边归并排序，使得右子序列有序
-            sort(arr,mid+1,right,temp);
+                //这是要把他们分成到单个数据，这样单个数据就相当于一个有序数组，
+                //这是分治中的分的过程 但分的过程也会调用治的过程。
+                //左边归并排序，使得左子序列有序
+                sort(arr,left,mid,temp);
+                ///右边归并排序，使得右子序列有序
+                sort(arr,mid+1,right,temp);
 
-            //merge操作的是两段有序的数组内容。
-            //这是分治法中的治的过程。  根据left和mid的不同，治的区间也不同。
-            merge(arr,left,mid,right,temp);
-        }
+                //merge操作的是两段有序的数组内容。
+                //这是分治法中的治的过程。  根据left和mid的不同，治的区间也不同。
+                merge(arr,left,mid,right,temp);
+            }
     }
 
     private static void merge(int[] arr,int left,int mid,int right,int[] temp){
@@ -110,15 +110,15 @@ public class MergeSort {
     }
     public static void main(String[] args) {
 
-        /*int arr[]= {65,58,95,10,57,62,13,106,78,23,85};
+        int arr[]= {65,58,95,10,57,62,13,106,78,23,85};
         int[] temp=new int[arr.length];
 
         System.out.println("排序前："+ Arrays.toString(arr));
 
         sort1(arr,0,arr.length-1,temp);
 
-        System.out.println("排序后："+Arrays.toString(arr));*/
-        Scanner scan = new Scanner(System.in);
+        System.out.println("排序后："+Arrays.toString(arr));
+       /* Scanner scan = new Scanner(System.in);
         //
         while (scan.hasNext()) {
             //得到每个数组
@@ -129,17 +129,17 @@ public class MergeSort {
                 arrs[i] = Integer.parseInt(nums[i]);
             }
 
-            /*int len=nums.length;
+            *//*int len=nums.length;
             int count=0;
             for(int i=1;i<len;i++){
                 for(int j=i;j>=0;j--){
                     if (Integer.parseInt(nums[j])>Integer.parseInt(nums[i])) count++;
                 }
-            }*/
+            }*//*
             int[] temp = new int[arrs.length];
             sort(arrs, 0, arrs.length - 1, temp);
             System.out.println(count);
 
-        }
+        }*/
     }
 }

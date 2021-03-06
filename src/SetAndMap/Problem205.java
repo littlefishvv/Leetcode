@@ -34,10 +34,10 @@ public class Problem205 {
         Map<Character ,Character> map=new HashMap<>();
         while (a<s.length()&&b<t.length()){
             if (!map.containsKey(s.charAt(a))){
-                map.put(s.charAt(a),t.charAt(b));
+                    map.put(s.charAt(a),t.charAt(b));
 
-            }else if (!(map.get(s.charAt(a))==t.charAt(b))){
-                return  false;
+                }else if (!(map.get(s.charAt(a))==t.charAt(b))){
+                    return  false;
             }
             a++;
             b++;

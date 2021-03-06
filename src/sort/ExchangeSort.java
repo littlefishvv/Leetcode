@@ -31,7 +31,7 @@ public class ExchangeSort {
         int n=arr.length;
         //第一轮循环的i仅仅起一个控制下层循环的作用，并不指向实际的元素。 这里i小于n和小于n-1都可以。
         for (int i = 0; i < n-1; i++) {
-            //我们只对前n-i-1个元素进行交换，因为每次我们都会把第n-i大的元素放到第n-i-1这个下标上去素放到最后去
+            //我们只对前n-i-1个元素进行交换，因为每次我们都会把第i大的元素放到第n-i-1这个下标上去素放到最后去
             for (int j=0;j<n-i-1;j++){
                 //如果后面的大于前面的，说明需要交换
                 if (arr[j+1]<arr[j]){
@@ -95,6 +95,7 @@ public class ExchangeSort {
 
         }
         arr[left]=pivot;*/
+       //为什么这里只能是小于而不能是小于等于呢？？？？？
        while(left<right){
            while(left<right&&arr[right]>=pivot) right--;
            //找到右边需要交换的元素的下标，把它放到左边的位置  不必担心基准值会变，因为基准值已经记录下来了。
@@ -102,10 +103,10 @@ public class ExchangeSort {
            //找到需要交换的左边的元素的下标，把它交换到右边的位置。
            while(left<right&&arr[left]<=pivot) left++;
            arr[right]=arr[left];
-
        }
-       //跳出循环后left==right，这时让这个值等于基准值。
-       arr[left]=pivot;
+       //跳出循环后left==right，这时让这个值等于基准值。这里写arr[left]=pivot和arr[right]=pivot是一样的效果。
+       arr[right]=pivot;
+       //这里return left和return right也是同一个效果
         return left;
 
     }
@@ -115,7 +116,7 @@ public class ExchangeSort {
 
         System.out.println("排序前："+ Arrays.toString(arr));
 
-        bubbleSort(arr);
+        quickSort(arr,0,arr.length-1);
 
         System.out.println("排序后："+Arrays.toString(arr));
 
